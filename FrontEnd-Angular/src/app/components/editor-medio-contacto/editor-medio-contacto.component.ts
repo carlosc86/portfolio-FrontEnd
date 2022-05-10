@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MedioContactoDataService } from 'src/app/services/medio-contacto-data.service';
 import { PortfolioDTOService } from 'src/app/services/portfolio-dto.service';
 import { EditorData } from '../editorData';
@@ -17,14 +17,18 @@ export class EditorMedioContactoComponent extends EditorData<MedioContactoData> 
 
   constructor(private fb:FormBuilder, protected medioContactoService:MedioContactoDataService, private pdto:PortfolioDTOService) { 
     super(medioContactoService);
+    //Expresion regular para manejar urls
+    let RegExURL="^((((https?)://)|(mailto:))" +
+                  "(%{2}|[-()_.!~*';/?:@&=+$, A-Za-z0-9])+)" + "([).!';/?:, ][[:blank:]])?$"
     this.forms=fb.group({
-      url:[''],
+      url:['',[Validators.required,Validators.pattern(RegExURL)]],
       empresa:[''],
       urlLogo:['']
     });
   }
 
   override ngOnInit(): void {
+    this.modal=document.getElementById('modalEditMedioContacto')!;
   }
 
   protected borrarElemento(): MedioContactoData {
@@ -45,4 +49,6 @@ export class EditorMedioContactoComponent extends EditorData<MedioContactoData> 
     this.eliminar();
     this.actualizar.emit(this.lista);
   }
+
+  get link(){return this.forms.get('url');}
 }

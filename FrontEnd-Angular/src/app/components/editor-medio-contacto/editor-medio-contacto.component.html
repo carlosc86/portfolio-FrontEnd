@@ -8,14 +8,15 @@
                     <h3 class="modal-title text-decoration-underline fw-bold mb-3">Medios de contactos</h3>
                     <form [formGroup]="forms" (ngSubmit)="aceptar()">
                         <div class="input-group mb-3">
-                            <input type="text" [(ngModel)]="elemento.link" class="form-control" id="url" formControlName="url">
+                            <input type="text" [(ngModel)]="elemento.link" class="form-control" id="url" formControlName="url"
+                             [ngClass]="{'is-valid': link?.valid && link?.touched, 'is-invalid': link?.invalid && link?.touched}">
                             <label for="url" class="input-group-text">Link</label>
                         </div>
                         <div class="col mb-3">
                             <button type="button" class="btn btn-primary ms-1 " (click)="resetForm()">Nuevo</button>
                             
                             <button type="button" class="btn btn-secondary ms-1 " data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
-                            <button type="button" class="btn btn-success ms-1 " data-bs-dismiss="modal" (click)="agregarMedio()">Aceptar</button>
+                            <button type="button" class="btn btn-success ms-1 " (click)="agregarMedio()">Aceptar</button>
                         </div>
                         <div class="input-group mb-1" *ngFor="let medio of lista">
                             <input type="button" [value]="medio.link" class="form-control btn-primary" id="urlLista" 
