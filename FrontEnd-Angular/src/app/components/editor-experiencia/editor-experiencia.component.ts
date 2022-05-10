@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExperienciaDataService } from 'src/app/services/experiencia-data.service';
 import { PortfolioDTOService } from 'src/app/services/portfolio-dto.service';
 import { EditorData } from '../editorData';
@@ -15,19 +15,21 @@ export class EditorExperienciaComponent extends EditorData<ExperienciaData> impl
   constructor(private fb:FormBuilder, private experienciaService:ExperienciaDataService, private pdto:PortfolioDTOService) { 
     super(experienciaService);
     this.forms=fb.group({
-      puesto:[''],
-      tipoTrabajo:[''],
+      puesto:['',[Validators.required]],
+      tipoTrabajo:['',[Validators.required]],
       descripcion:[''],
-      nombreEmpresa:[''],
+      nombreEmpresa:['',[Validators.required]],
+      direccionEmpresa:[''],
       urlLogoEmpresa:[''],
-      fechaInicio:[''],
-      fechaFin:['']
+      fechaInicio:['',[Validators.required]],
+      fechaFin:['',[Validators.required]]
     });
   }
   override ngOnInit(): void {
-    this.pdto.obtener<ExperienciaData>("experiencias").subscribe(dato=>{
+    this.pdto.obtener<ExperienciaData>("experiencias").subscribe(dato=>{//Carga de datos desde el portfolioDTO
       this.lista=dato
     });
+    this.modal=document.getElementById('editExperiences')!; //Necesario para cerral el modal con typescript
   }
 
   protected borrarElemento(): ExperienciaData {
@@ -42,6 +44,21 @@ export class EditorExperienciaComponent extends EditorData<ExperienciaData> impl
       fechaInicio:"",
       fechaFin:""
     };
+  }
+
+  get puesto(){return this.forms.get('puesto')!;}
+  get tipoTrabajo(){return this.forms.get('tipoTrabajo')!;}
+  get nombreEmpresa(){return this.forms.get('nombreEmpresa')!;}
+  get fechaInicio(){return this.forms.get('fechaInicio')!;}
+  get fechaFin(){return this.forms.get('fechaFin')!;}
+
+  public validarFechas(){
+    if(Date.parse(this.fechaFin.value)>Date.now()){
+      this.fechaFin.setErrors({'incorrect':true});
+    }
+    if(this.fechaInicio.value>this.fechaFin.value){
+      this.fechaInicio.setErrors({'incorrect':true});
+    }
   }
 
 }

@@ -13,13 +13,14 @@ import { EstudioData } from '../estudioData';
 })
 export class EditorEstudioComponent extends EditorData<EstudioData> implements OnInit{
   
-  @ViewChild('editStudies') basicModal?: ElementRef;
+  
 
   
   
 
   constructor(private fb:FormBuilder, private estudioService:EstudioDataService, private pdto:PortfolioDTOService) {
-    super(estudioService);           
+    super(estudioService);  
+    this.modal=document.getElementById('editStudies')!;         
     this.forms=fb.group({
       titulo:['',[Validators.required]],
       nombreInstitucion:['',[Validators.required]],
@@ -30,9 +31,10 @@ export class EditorEstudioComponent extends EditorData<EstudioData> implements O
     });
    }
   override ngOnInit(): void {
-    this.pdto.obtener<EstudioData>("estudios").subscribe(dato=>{
+    this.pdto.obtener<EstudioData>("estudios").subscribe(dato=>{//Carga de datos desde el portfolioDTO
       this.lista=dato
     });
+    this.modal=document.getElementById('editStudies')!;//Necesario para cerral el modal con typescript
   }
 
   get titulo(){return this.forms.get('titulo')!;}
