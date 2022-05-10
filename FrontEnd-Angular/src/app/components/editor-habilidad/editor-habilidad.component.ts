@@ -1,5 +1,5 @@
 import { Component,  OnInit,  } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HabilidadDataService } from 'src/app/services/habilidad-data.service';
 import { PortfolioDTOService } from 'src/app/services/portfolio-dto.service';
 import { EditorData } from '../editorData';
@@ -17,15 +17,16 @@ export class EditorHabilidadComponent extends EditorData<HabilidadData> implemen
               private habilidadService:HabilidadDataService, private pdto:PortfolioDTOService) {
     super(habilidadService);
     this.forms=fb.group({
-      nombre:[''],
+      nombre:['',[Validators.required]],
       descripcion:[''],
-      porcentaje:[50]
+      porcentaje:[50,[Validators.required,Validators.min(0),Validators.max(100)]]
     });
    }
    override ngOnInit(): void {
-    this.pdto.obtener<HabilidadData>("habilidades").subscribe(dato=>{
+    this.pdto.obtener<HabilidadData>("habilidades").subscribe(dato=>{// Cargo los datos desde el portfolioDTO
       this.lista=dato
     });
+    this.modal=document.getElementById('editSkills')!;//Necesario para cerrar el modal desde typescript.
   }
 
    protected borrarElemento(): HabilidadData {
@@ -36,5 +37,9 @@ export class EditorHabilidadComponent extends EditorData<HabilidadData> implemen
       porcentaje:50
     };
   }
+
+  get nombre(){return this.forms.get('nombre')!;}
+  get porcentaje(){return this.forms.get('porcentaje')!;}
+  get descripcion(){return this.forms.get('descripcion')!;}
 
 }
