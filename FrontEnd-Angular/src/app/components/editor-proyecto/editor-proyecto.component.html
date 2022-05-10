@@ -16,28 +16,33 @@
                     <div class="row mb-3">
                         <div class="form-floating col">
                             <input type="text" [(ngModel)]="elemento.nombre" id="nombreProyecto" class="form-control"
-                                formControlName="nombre" placeholder="Proyecto en el que participe.">
+                                formControlName="nombre" placeholder="Proyecto en el que participe."
+                                [ngClass]="{'is-valid': nombre.valid && nombre.touched, 'is-invalid': nombre.invalid && nombre.touched}">
                             <label for="nombreProyecto" class="form-label">Nombre del proyecto</label>
                         </div>
                         <div class="input-group col">
-                            <input type="date" [(ngModel)]="elemento.fecha" class="form-control" id="fechaProy" formControlName="anio">
+                            <input type="date" [(ngModel)]="elemento.fecha" class="form-control" id="fechaProy" formControlName="fecha"
+                                [ngClass]="{'is-valid': fecha.valid && fecha.touched, 'is-invalid': fecha.invalid && fecha.touched}" 
+                                (change)="validarFecha()">
                             <label for="fechaProy" class="input-group-text">Fecha</label>
                         </div>
                     </div>
                     <div class="form-floating mb-3">
                         <textarea [(ngModel)]="elemento.descripcion" id="descripcionProyecto" class="form-control"
-                            style="resize: none; height: 150px;"
-                            placeholder="Describe el proyecto" formControlName="descripcion"></textarea>
+                            style="resize: none; height: 150px;" placeholder="Describe el proyecto" formControlName="descripcion"
+                            [ngClass]="{'is-valid': forms.get('descripcion')!.touched}"></textarea>
                         <label for="descripcionProyecto" class="form-label">Descripcion del
                             proyecto</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" [(ngModel)]="elemento.link" id="linkProyecto" class="form-control"
-                            formControlName="link" placeholder="Direccion web del proyecto.">
+                            formControlName="link" placeholder="Direccion web del proyecto."
+                            [ngClass]="{'is-valid': link.valid && link.touched, 'is-invalid': link.invalid && link.touched}">
                         <label for="linkProyecto" class="form-label">Url del proyecto</label>
                     </div>
                     <div class="input-group">
-                        <input type="text" name="" id="imagenProyecto" class="form-control" formControlName="urlImagen">
+                        <input type="text" name="" id="imagenProyecto" class="form-control" formControlName="urlImagen"
+                            [ngClass]="{'is-valid': urlImagen.valid && urlImagen.touched, 'is-invalid': urlImagen.invalid && urlImagen.touched}">
                         <label for="imagenProyecto" class="input-group-text">Imagen</label>
                         <button type="button" class="btn btn-primary shadow" (click)="agregarALista()">Agregar</button>
                     </div>
@@ -48,8 +53,7 @@
                     <div class="mt-3">
                     <button class="btn btn-secondary shadow" type="button"
                         data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
-                    <button class="btn btn-success shadow" type="submit"
-                        data-bs-dismiss="modal">Aceptar</button>
+                    <button class="btn btn-success shadow" type="submit">Aceptar</button>
                     </div>
                 </form>
             </div>
