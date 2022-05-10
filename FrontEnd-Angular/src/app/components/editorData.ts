@@ -17,6 +17,7 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
     public elemento:T;
     public copia:T;
     public forms!:FormGroup;
+    public modal!:HTMLElement;
 
     constructor(protected dataService:DataService<T>,
                 /*protected onLoadService:PortfolioDTOService*/){
@@ -43,16 +44,23 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
         this.resetForm();
     }
     aceptar(){
-        if(isNaN(this.elemento.id)){
-            this.dataService.agregar(this.elemento).subscribe(dato=>{
-                this.elemento.id=dato.id;
-                this.lista.push(this.elemento);
-                this.resetForm();
-            });
-        }else
-            this.dataService.modificar(this.elemento).subscribe(dato=>{
-                this.resetForm();
-            });
+        this.forms.markAllAsTouched();//Marco como tocado todo el formulario para que aparezcan las validaciones
+        if(this.forms.valid){ //Si el formulario es valido
+            //Hago el insert o el update
+            if(isNaN(this.elemento.id)){
+                this.dataService.agregar(this.elemento).subscribe(dato=>{
+                    this.elemento.id=dato.id;
+                    this.lista.push(this.elemento);
+                    this.resetForm();
+                });
+            }else{
+                this.dataService.modificar(this.elemento).subscribe(dato=>{
+                    this.resetForm();
+                });
+            }
+            //Oculto el modal si todo esta correcto
+            this.modal.click();
+        }
     }
 
     eliminar(){

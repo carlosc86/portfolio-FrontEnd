@@ -13,29 +13,40 @@
                 <h3 class="modal-title text-decoration-underline fw-bold">Estudio</h3>
                 <form action="" [formGroup]="forms" (ngSubmit)="aceptar()">
                     <div class="form-floating mb-3">
-                        <input type="text" [(ngModel)]="elemento.titulo" name="" id="titulo_estudio" class="form-control" formControlName="titulo" placeholder="Titulo">
+                        <input type="text" [(ngModel)]="elemento.titulo" id="titulo_estudio" class="form-control" 
+                            formControlName="titulo" placeholder="Titulo" [ngClass]="{'is-invalid': titulo.invalid&&titulo.touched, 'is-valid':titulo.valid&&titulo.touched}">
                         <label for="titulo_estudio" class="form-label">Titulo</label>
+
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" [(ngModel)]="elemento.nombreInstitucion"  id="institucion" class="form-control" formControlName="institucion" placeholder="Institucion">
-                        <label for="titulo_estudio" class="form-label">Institucion</label>
+                        <input type="text" [(ngModel)]="elemento.nombreInstitucion"  id="nombreInstitucion" class="form-control" 
+                            formControlName="nombreInstitucion" placeholder="Institucion" [ngClass]="{'is-invalid': nombreInstitucion.invalid&&nombreInstitucion.touched, 'is-valid':nombreInstitucion.valid&&nombreInstitucion.touched}">
+                        <label for="nombreInstitucion" class="form-label">Institucion</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" [(ngModel)]="elemento.direccionInstitucion"  id="direccionInstitucion" class="form-control" 
+                            formControlName="direccionInstitucion" placeholder="Direccion institucion" [ngClass]="{'is-valid': forms.get('direccionInstitucion')!.touched}">
+                        <label for="direccionInstitucion" class="form-label">Direccion</label>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" [(ngModel)]="elemento.rutaLogoInstitucion"  id="logo_institucion" class="form-control" formControlName="urlLogo">
+                        <input type="text" [(ngModel)]="elemento.rutaLogoInstitucion"  id="logo_institucion" class="form-control" 
+                            formControlName="rutaLogo" [ngClass]="{'is-valid':forms.get('rutaLogo')!.touched}">
                         <label for="logo_institucion" class="input-group-text">Logo</label>
                     </div>
                     <div class="row mb-3">
                         <div class="input-group col">
-                            <input type="date" [(ngModel)]="elemento.fechaInicio"  id="fechaEstudioInicio" class="form-control" formControlName="anioInicio" >
+                            <input type="date" [(ngModel)]="elemento.fechaInicio"  id="fechaEstudioInicio" class="form-control" 
+                                formControlName="fechaInicio" [ngClass]="{'is-invalid': fechaInicio.invalid&&fechaInicio.touched, 'is-valid':fechaInicio.valid&&fechaInicio.touched}" (change)="validarFechas()">
                             <label for="fechaEstudioInicio" class="input-group-text">Fecha inicio</label>
                         </div>
                         <div class="input-group col">
-                            <input type="date" [(ngModel)]="elemento.fechaFin"  id="fechaEstudioFin" class="form-control" formControlName="anioFin">
+                            <input type="date" [(ngModel)]="elemento.fechaFin"  id="fechaEstudioFin" class="form-control" 
+                                formControlName="fechaFin" [ngClass]="{'is-invalid': fechaFin.invalid&&fechaFin.touched, 'is-valid':fechaFin.valid&&fechaFin.touched}" (change)="validarFechas()">
                             <label for="fechaEstudioFin" class="input-group-text">Fecha fin</label>
                         </div>
                     </div>
                     <button class="btn btn-secondary shadow" type="button" data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
-                    <button class="btn btn-success shadow" type="submit" data-bs-dismiss="modal">Aceptar</button>
+                    <button class="btn btn-success shadow" type="submit" >Aceptar</button>
                 </form>
             </div>
         </div>

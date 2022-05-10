@@ -1,6 +1,6 @@
 import { LocationStrategy } from '@angular/common';
-import { Component, OnInit} from '@angular/core';
-import { FormBuilder} from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { FormBuilder, Validators} from '@angular/forms';
 import { EstudioDataService } from 'src/app/services/estudio-data.service';
 import { PortfolioDTOService } from 'src/app/services/portfolio-dto.service';
 import { EditorData } from '../editorData';
@@ -12,15 +12,21 @@ import { EstudioData } from '../estudioData';
   styleUrls: ['./editor-estudio.component.css']
 })
 export class EditorEstudioComponent extends EditorData<EstudioData> implements OnInit{
+  
+  @ViewChild('editStudies') basicModal?: ElementRef;
+
+  
+  
 
   constructor(private fb:FormBuilder, private estudioService:EstudioDataService, private pdto:PortfolioDTOService) {
     super(estudioService);           
     this.forms=fb.group({
-      titulo:[''],
-      institucion:[''],
-      urlLogo:[''],
-      anioInicio:[''],
-      anioFin:['']
+      titulo:['',[Validators.required]],
+      nombreInstitucion:['',[Validators.required]],
+      direccionInstitucion:[''],
+      rutaLogo:[''],
+      fechaInicio:['',[Validators.required]],
+      fechaFin:['',[Validators.required]]
     });
    }
   override ngOnInit(): void {
@@ -28,6 +34,11 @@ export class EditorEstudioComponent extends EditorData<EstudioData> implements O
       this.lista=dato
     });
   }
+
+  get titulo(){return this.forms.get('titulo')!;}
+  get nombreInstitucion(){return this.forms.get('nombreInstitucion')!;}
+  get fechaInicio(){return this.forms.get('fechaInicio')!;}
+  get fechaFin(){return this.forms.get('fechaFin')!;}
 
   protected borrarElemento(){
     return {
@@ -39,6 +50,15 @@ export class EditorEstudioComponent extends EditorData<EstudioData> implements O
       fechaInicio:"",
       fechaFin:""
     };
+  }
+
+  public validarFechas(){
+    if(Date.parse(this.fechaFin.value)>Date.now()){
+      this.forms.get('fechaFin')?.setErrors({'incorrect':true});
+    }
+    if(this.fechaInicio.value>this.fechaFin.value){
+      this.forms.get('fechaInicio')?.setErrors({'incorrect':true});
+    }
   }
 
 }
