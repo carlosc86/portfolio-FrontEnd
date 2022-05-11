@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { waitForAsync } from '@angular/core/testing';
-import { PortfolioDTOService } from './services/portfolio-dto.service';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +7,7 @@ import { PortfolioDTOService } from './services/portfolio-dto.service';
 })
 export class AppComponent {
   
-  title = 'Front-End-Angular';
+  title = 'Portfolio Carlos A. Carricondo';
    
   constructor(){
 

@@ -23,8 +23,8 @@ export class EditorSeccionComponent extends EditorData<SeccionData> implements O
   }
   override ngOnInit(): void {
     this.pdto.obtener<SeccionData>('secciones').subscribe(dato=>{
-      this.lista=dato
-    });
+      this.lista=dato;
+    }).closed;
   }
 
   protected borrarElemento(): SeccionData {
