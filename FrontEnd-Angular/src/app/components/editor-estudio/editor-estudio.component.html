@@ -45,6 +45,7 @@
                             <label for="fechaEstudioFin" class="input-group-text">Fecha fin</label>
                         </div>
                     </div>
+                    <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>    
                     <button class="btn btn-secondary shadow" type="button" data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
                     <button class="btn btn-success shadow" type="submit" >Aceptar</button>
                 </form>

@@ -19,7 +19,8 @@
                     <div class="form-floating mb-3">
                         <textarea id="texto" [(ngModel)]="elemento.texto"  class="form-control" style="resize: none; height: 150px;" formControlName="texto" placeholder="Escriba el texto de la seccion"></textarea>
                         <label for="texto" class="form-label">Texto</label>
-                    </div>                    
+                    </div>
+                    <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>                        
                     <button class="btn btn-secondary shadow" type="button" data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
                     <button class="btn btn-success shadow" type="submit" data-bs-dismiss="modal" >Aceptar</button>
                 </form>

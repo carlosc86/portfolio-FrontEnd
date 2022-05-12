@@ -13,6 +13,7 @@
                             <label for="url" class="input-group-text">Link</label>
                         </div>
                         <div class="col mb-3">
+                            <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>    
                             <button type="button" class="btn btn-primary ms-1 " (click)="resetForm()">Nuevo</button>
                             
                             <button type="button" class="btn btn-secondary ms-1 " data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>

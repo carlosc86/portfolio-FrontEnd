@@ -43,6 +43,7 @@ import { ElementoBotonComponent } from './components/elemento-boton/elemento-bot
 import { InfoUsuarioComponent } from './components/info-usuario/info-usuario.component';
 import { Seccion404Component } from './components/seccion404/seccion404.component';
 import { PaginaPortfolioComponent } from './components/pagina-portfolio/pagina-portfolio.component';
+import { InfoErrorComponent } from './components/info-error/info-error.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { PaginaPortfolioComponent } from './components/pagina-portfolio/pagina-p
     ElementoBotonComponent,
     InfoUsuarioComponent,
     Seccion404Component,
-    PaginaPortfolioComponent
+    PaginaPortfolioComponent,
+    InfoErrorComponent
   ],
   imports: [
     BrowserModule,

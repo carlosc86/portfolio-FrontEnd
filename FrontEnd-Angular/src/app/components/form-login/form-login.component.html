@@ -1,5 +1,5 @@
 <!--Modal con el formulario de login-->
-<div class="modal fade" id="siginmodal" tabindex="-1">
+<div class="modal fade" id="siginmodal" tabindex="-1" #modalLogin>
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content modalLogin mx-auto">
             <div class="modal-header">
@@ -34,10 +34,14 @@
                                 El password debe tener por lo menos 8 caracteres.
                             </span>
                         </div>
-                    </div>                    
-                    <button type="submit" class="btn btn-primary shadow mb-3 mt-5" data-bs-dismiss="modal">Ingresar</button>
+                    </div>
+                    <p *ngIf="!hadError" class="mb-3">Ingrese su usuario y contraseña por favor.</p>
+                    <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>                    
+                    <button type="submit" class="btn btn-primary shadow mb-3 mt-2" >Ingresar</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+

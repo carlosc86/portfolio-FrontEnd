@@ -53,6 +53,7 @@
                             placeholder="Que hacia en ese puesto" [ngClass]="{'is-valid': forms.get('descripcion')!.touched}"></textarea>
                         <label for="descripcionPuesto" class="form-label">Lo que hacia en ese puesto era...</label>
                     </div>
+                    <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>    
                     <button class="btn btn-secondary shadow" type="button" data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
                     <button class="btn btn-success shadow" type="submit" >Aceptar</button>
                 </form>

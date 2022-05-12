@@ -57,4 +57,11 @@ export class AuthenticationService {
   get usuario(){
     return this.currentUserSubject.asObservable();
   }
+
+  forzarLogout(){ //Metodo solo utilizado cuando hay error de authenticacion con el backend, se debe reloguear
+    sessionStorage.removeItem(this.tokenKey);
+    sessionStorage.removeItem(this.userKey);
+    this.currentTokenSubject.next(JSON.parse('{}'));//no hay nada lo acabo de borrar
+    this.currentUserSubject.next(JSON.parse('{}'));//no hay nada lo acabo de borrar
+  }
 }
