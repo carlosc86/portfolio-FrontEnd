@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule,Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -41,6 +42,10 @@ import { PortfolioDTOService } from './services/portfolio-dto.service';
 import { ProyectoDataService } from './services/proyecto-data.service';
 import { ElementoBotonComponent } from './components/elemento-boton/elemento-boton.component';
 import { InfoUsuarioComponent } from './components/info-usuario/info-usuario.component';
+import { Seccion404Component } from './components/seccion404/seccion404.component';
+import { PaginaPortfolioComponent } from './components/pagina-portfolio/pagina-portfolio.component';
+import { InfoErrorComponent } from './components/info-error/info-error.component';
+import { ElementoSeparadorComponent } from './components/elemento-separador/elemento-separador.component';
 
 
 @NgModule({
@@ -69,10 +74,15 @@ import { InfoUsuarioComponent } from './components/info-usuario/info-usuario.com
     EditorMedioContactoComponent,
     FormLoginComponent,
     ElementoBotonComponent,
-    InfoUsuarioComponent
+    InfoUsuarioComponent,
+    Seccion404Component,
+    PaginaPortfolioComponent,
+    InfoErrorComponent,
+    ElementoSeparadorComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule

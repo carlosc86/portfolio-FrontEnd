@@ -14,6 +14,7 @@ export class InterceptorService implements HttpInterceptor {
   
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       let currentToken=this.authService.tokenUsuario;
+      //console.log(currentToken);
       if(typeof(currentToken)===typeof ("") ){
         req=req.clone({
           setHeaders:{

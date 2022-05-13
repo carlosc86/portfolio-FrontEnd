@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { DataPortfolio } from "../services/data";
 import { DataService } from "../services/dataService";
-import { PortfolioDTOService } from "../services/portfolio-dto.service";
 
 /* Clase generica para el manejo de edicion de elementos */
 
@@ -17,6 +16,9 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
     public elemento:T;
     public copia:T;
     public forms!:FormGroup;
+    public modal!:HTMLElement;
+    public hadError=false;
+    public mensajeError="";
 
     constructor(protected dataService:DataService<T>,
                 /*protected onLoadService:PortfolioDTOService*/){
@@ -26,11 +28,6 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
     } 
 
     ngOnInit(){
-        /* //Habilitar cuando este la api resuelta
-       this.onLoadService.traer().subscribe(dato=>{
-            this.lista=obtenerDatos(dato);
-       });
-       */
         this.dataService.traer().subscribe(dato=>{
             this.lista=dato;
         });
@@ -43,16 +40,29 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
         this.resetForm();
     }
     aceptar(){
-        if(isNaN(this.elemento.id)){
-            this.dataService.agregar(this.elemento).subscribe(dato=>{
-                this.elemento.id=dato.id;
-                this.lista.push(this.elemento);
-                this.resetForm();
-            });
-        }else
-            this.dataService.modificar(this.elemento).subscribe(dato=>{
-                this.resetForm();
-            });
+        this.forms.markAllAsTouched();//Marco como tocado todo el formulario para que aparezcan las validaciones
+        if(this.forms.valid){ //Si el formulario es valido
+            //Hago el insert o el update
+            if(isNaN(this.elemento.id)){
+                this.dataService.agregar(this.elemento).subscribe(dato=>{
+                    this.elemento.id=dato.id;
+                    this.lista.push(this.elemento);
+                    this.resetForm();
+                    this.modal?.click();
+                }, error=>{
+                    this.tratarError(error);
+                    this.hadError=true;
+                });
+            }else{
+                this.dataService.modificar(this.elemento).subscribe(dato=>{
+                    this.resetForm();
+                    this.modal?.click();
+                }, error=>{
+                    this.tratarError(error);
+                    this.hadError=true;
+                });
+            }
+        }
     }
 
     eliminar(){
@@ -72,6 +82,7 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
     
     resetForm(){
         this.elemento=this.borrarElemento();
+        this.hadError=false;
         this.forms!.reset();   
     }
 
@@ -80,6 +91,16 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
     }
 
     protected abstract borrarElemento():T; //Devuelve un elemento limpio
+
+    protected tratarError(error:any){
+        if(error.status===401){
+            this.mensajeError="Error de authenticacion, porfavor vuelva a loguear."
+        }else{
+            this.mensajeError="Ocurrió un error";
+        }
+        
+
+    }
     
 
 

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Call } from '@angular/compiler';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CredencialData } from '../credencialData';
+
 
 @Component({
   selector: 'app-form-login',
@@ -9,10 +11,16 @@ import { CredencialData } from '../credencialData';
   styleUrls: ['./form-login.component.css']
 })
 export class FormLoginComponent implements OnInit {
+  
+  @ViewChild('modalLogin') modal?:ElementRef;
+  
   credenciales:CredencialData={
     user:"",
     password:""
   }
+
+  mensajeError="";
+  hadError=false;
 
   form:FormGroup;
 
@@ -36,8 +44,19 @@ export class FormLoginComponent implements OnInit {
     if(this.form.valid){
       this.authService.login(this.credenciales).subscribe(data=>{
         console.log("Se inicio sesion exitosamente ");
+        this.hadError=false;
+        this.modal?.nativeElement.click();
+      },error=>{
+        if(error.status===401){
+          console.log("Error de logueo");
+          this.mensajeError="Usuario o password incorrectos."
+          this.hadError=true;
+        }        
       });
     }
+    
+      
+  
   }
 
 }

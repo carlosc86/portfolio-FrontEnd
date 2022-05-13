@@ -19,7 +19,16 @@
                     <div class="form-floating mb-3">
                         <textarea id="texto" [(ngModel)]="elemento.texto"  class="form-control" style="resize: none; height: 150px;" formControlName="texto" placeholder="Escriba el texto de la seccion"></textarea>
                         <label for="texto" class="form-label">Texto</label>
-                    </div>                    
+                    </div>
+                    <div class="col input-group mb-3">
+                        <input type="color" [(ngModel)]="elemento.colorFondo" id="colorFondo" class="col-2 form-control" formControlName="colorFondo" placeholder="Ingrese color del fondo" style="height: 40px;">
+                        <label for="colorFondo" class="col-10 input-group-text">Color del fondo</label>
+                    </div>
+                    <div class="col input-group mb-3">
+                        <input type="color" [(ngModel)]="elemento.colorTexto" id="colorTexto" class="col-2 form-control" formControlName="colorTexto" placeholder="Ingrese color del texto" style="height: 40px;">
+                        <label for="colorTexto" class="col-10 input-group-text">Color del texto</label>
+                    </div>
+                    <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>                        
                     <button class="btn btn-secondary shadow" type="button" data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
                     <button class="btn btn-success shadow" type="submit" data-bs-dismiss="modal" >Aceptar</button>
                 </form>

@@ -18,13 +18,15 @@ export class EditorSeccionComponent extends EditorData<SeccionData> implements O
     this.forms=fb.group({
       titulo:['',],
       rutaImagen:['',],
-      texto:['',]
+      texto:['',],
+      colorFondo:["",],
+      colorTexto:["",]
     });
   }
   override ngOnInit(): void {
     this.pdto.obtener<SeccionData>('secciones').subscribe(dato=>{
-      this.lista=dato
-    });
+      this.lista=dato;
+    }).closed;
   }
 
   protected borrarElemento(): SeccionData {
@@ -32,7 +34,9 @@ export class EditorSeccionComponent extends EditorData<SeccionData> implements O
       nombre:"",
       titulo:"",
       texto:"",
-      rutaImagen:""};
+      rutaImagen:"",
+      colorFondo:"",
+      colorTexto:""};
   }
 
   getSeccionPorNombre(nombre:string):SeccionData{

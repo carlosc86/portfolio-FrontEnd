@@ -24,6 +24,8 @@ export class PortfolioDTOService extends DataService<PortfolioDTO> {
 
   private dtoCache:PortfolioDTO; //Especie de cache improvisada, solo para cargar los datos por primera vez
 
+  private enEspera:boolean=true;
+
   constructor(protected override api:ApiComunicationService) {
     super(api);
 
@@ -37,14 +39,26 @@ export class PortfolioDTOService extends DataService<PortfolioDTO> {
       proyectos:[]
     }
     this.cargarObservadores();//Creo los observadores, pues todavia no hay ninguno
-    super.traer().subscribe(dato=>{
+    this.traer().subscribe(dato=>{
       this.dtoCache=dato[0];
+      this.enEspera=false;
       this.cargarObservadores();//Actualizo los observadores, lo que provoca callbacks
     });
   }
 
+  override traer(ruta?: string): Observable<PortfolioDTO[]> {
+    this.enEspera=true;
+    return super.traer();
+  }
+
   obtener<T>(llave:claves):Observable<T[]>{ //Devuelve la promesa de un elemento dentro del DTO
     let elemento=this.buscarObservador<T>(llave);
+    if(!this.enEspera&&this.dtoCache.secciones.length>0){
+      this.enEspera=true;
+      setTimeout(()=>{
+        this.cargarObservadores();//Actualizo los observadores, lo que provoca callbacks
+      },50);      
+    }
     return elemento.valor.asObservable();
   }
 
@@ -65,10 +79,11 @@ export class PortfolioDTOService extends DataService<PortfolioDTO> {
       }
         
     }
+    this.enEspera=false;
   }
 
 
-/*
+  /*
   static getInstancia(): PortfolioDTOService{//Parte del patron Singleton
     return PortfolioDTOService.instancia;
   }

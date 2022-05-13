@@ -4,4 +4,6 @@ export interface SeccionData{
     titulo:string,
     texto:string,
     rutaImagen:string,
+    colorFondo:string,
+    colorTexto:string
 }

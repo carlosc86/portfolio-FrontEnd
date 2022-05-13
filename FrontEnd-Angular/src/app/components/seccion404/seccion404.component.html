@@ -1,0 +1,15 @@
+<section class="row text-center text-white pt-5 notFound mb-0" [style]="'background-color: '+seccion.colorFondo+'; color: '+seccion.colorTexto+';'">
+    <header class="navbar navbar-expand-md fixed-top navbar-dark text-white barraSup">
+        <nav class="container-fluid">
+            <img class="navbar-brand img-fluid" src="assets/APLogo.png">
+        </nav>
+    </header>
+
+        <div class="col-12 pt-4">
+            <img class="img-fluid" src="{{seccion.rutaImagen}}">
+            <h1 class="col-6 fw-bold position-relative text-uppercase start-50 translate-middle-x"><strong>{{seccion.titulo}}</strong></h1>
+            <h3 >Error 404</h3>
+            <p>{{seccion.texto}}</p>
+            <button type="button" class="btn btn-primary" (click)="volver()">Volver</button>
+        </div>
+</section>
