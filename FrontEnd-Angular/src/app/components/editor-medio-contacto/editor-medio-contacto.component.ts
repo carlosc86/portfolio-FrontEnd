@@ -51,4 +51,32 @@ export class EditorMedioContactoComponent extends EditorData<MedioContactoData> 
   }
 
   get link(){return this.forms.get('url');}
+
+  override aceptar(){
+    this.forms.markAllAsTouched();//Marco como tocado todo el formulario para que aparezcan las validaciones
+    if(this.forms.valid){ //Si el formulario es valido
+        //Hago el insert o el update
+        if(isNaN(this.elemento.id)){
+            this.dataService.agregar(this.elemento).subscribe(dato=>{
+                this.elemento.id=dato.id;
+                this.elemento.empresa=dato.empresa;
+                this.elemento.rutaIcono=dato.rutaIcono;
+                this.lista.push(this.elemento);
+                this.resetForm();
+                this.modal?.click();
+            }, error=>{
+                this.tratarError(error);
+                this.hadError=true;
+            });
+        }else{
+            this.dataService.modificar(this.elemento).subscribe(dato=>{
+                this.resetForm();
+                this.modal?.click();
+            }, error=>{
+                this.tratarError(error);
+                this.hadError=true;
+            });
+        }
+    }
+}
 }
