@@ -18,7 +18,8 @@ export class EditorSeccionComponent extends EditorData<SeccionData> implements O
     this.forms=fb.group({
       titulo:['',],
       rutaImagen:['',],
-      texto:['',]
+      texto:['',],
+      color:["",]
     });
   }
   override ngOnInit(): void {
@@ -32,7 +33,8 @@ export class EditorSeccionComponent extends EditorData<SeccionData> implements O
       nombre:"",
       titulo:"",
       texto:"",
-      rutaImagen:""};
+      rutaImagen:"",
+      colorFondo:""};
   }
 
   getSeccionPorNombre(nombre:string):SeccionData{
