@@ -1,8 +1,8 @@
 <!--Seccion About-->
-<section class="row pt-3" id="about" [style]="'background-color: '+seccion.colorFondo+';'">
+<section class="row pt-3" id="about" [style]="'background-color: '+seccion.colorFondo+'; color: '+seccion.colorTexto+';'">
     <div class="col-12 mt-5 mb-5">
         <h1 class="mt-5 text-uppercase"><strong>{{seccion.titulo}}</strong></h1>
-        <img src="assets/StarSeparatorBlue.png" alt="----Soy un separador----" class="img-fluid">
+        <app-elemento-separador class="img-fluid" [color]="seccion.colorTexto"></app-elemento-separador> 
         <div class="col-12">
             <div class="col-12 pt-3 mx-auto d-inline-flex position-relative justify-content-center">
                 <img src="{{seccion.rutaImagen}}" class="img-fluid col-4 col-md-1">

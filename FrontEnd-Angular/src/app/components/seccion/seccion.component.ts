@@ -16,7 +16,8 @@ export class SeccionComponent implements OnInit {
     titulo:"",
     texto:"",
     rutaImagen:"",
-    colorFondo:""
+    colorFondo:"",
+    colorTexto:""
   };
 
   @Output() activar:EventEmitter<SeccionData>=new EventEmitter<SeccionData>();

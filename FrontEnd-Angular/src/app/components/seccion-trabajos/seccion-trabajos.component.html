@@ -1,8 +1,8 @@
 <!--Seccion Works-->
-<section class="row pt-3 text-white" id="works" [style]="'background-color: '+seccion.colorFondo+';'">
+<section class="row pt-3" id="works" [style]="'background-color: '+seccion.colorFondo+'; color: '+seccion.colorTexto+';'">
     <div class="col-12 mt-5">
         <h1 class="text-uppercase mt-5"><strong>{{seccion.titulo}}</strong></h1>
-        <img src="assets/StarSeparatorWhite.png" alt="----Soy un separador----" class="img-fluid">
+        <app-elemento-separador class="img-fluid" [color]="seccion.colorTexto"></app-elemento-separador> 
         <p class="col-12">{{seccion.texto}}</p>
     </div>
     <!--Editor de seccion-->

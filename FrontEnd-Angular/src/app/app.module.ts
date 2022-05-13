@@ -45,6 +45,7 @@ import { InfoUsuarioComponent } from './components/info-usuario/info-usuario.com
 import { Seccion404Component } from './components/seccion404/seccion404.component';
 import { PaginaPortfolioComponent } from './components/pagina-portfolio/pagina-portfolio.component';
 import { InfoErrorComponent } from './components/info-error/info-error.component';
+import { ElementoSeparadorComponent } from './components/elemento-separador/elemento-separador.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { InfoErrorComponent } from './components/info-error/info-error.component
     InfoUsuarioComponent,
     Seccion404Component,
     PaginaPortfolioComponent,
-    InfoErrorComponent
+    InfoErrorComponent,
+    ElementoSeparadorComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,8 @@ export class EditorSeccionComponent extends EditorData<SeccionData> implements O
       titulo:['',],
       rutaImagen:['',],
       texto:['',],
-      color:["",]
+      colorFondo:["",],
+      colorTexto:["",]
     });
   }
   override ngOnInit(): void {
@@ -34,7 +35,8 @@ export class EditorSeccionComponent extends EditorData<SeccionData> implements O
       titulo:"",
       texto:"",
       rutaImagen:"",
-      colorFondo:""};
+      colorFondo:"",
+      colorTexto:""};
   }
 
   getSeccionPorNombre(nombre:string):SeccionData{
