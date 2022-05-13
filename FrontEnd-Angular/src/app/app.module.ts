@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule,Router } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -79,6 +80,7 @@ import { InfoErrorComponent } from './components/info-error/info-error.component
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule

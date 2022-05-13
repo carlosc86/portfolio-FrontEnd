@@ -20,22 +20,22 @@
             <div class="col-12">
                 <ul class="nav navbar-nav justify-content-end">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link active" aria-current="page">INICIO</a>
+                        <a [routerLink]="'.'" [fragment]="'home'" class="nav-link active" aria-current="page">INICIO</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#about" class="nav-link" aria-current="page">ACERCA DE</a>
+                        <a [routerLink]="'.'" [fragment]="'about'" class="nav-link" aria-current="page">ACERCA DE</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#works" class="nav-link" aria-current="page">TRABAJOS</a>
+                        <a [routerLink]="'.'" [fragment]="'works'" class="nav-link" aria-current="page">TRABAJOS</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#contact" class="nav-link" aria-current="page">CONTACTO</a>
+                        <a [routerLink]="'.'" [fragment]="'contact'" class="nav-link" aria-current="page">CONTACTO</a>
                     </li>
-                    <li class="nav-item not-ocultable">
+                    <li class="nav-item">
                         <a href="" class="nav-link" aria-current="page" data-bs-toggle="modal" 
                             data-bs-target="#siginmodal" *ngIf="!isLogin()">LOGIN</a>
                     </li>
-                    <li class="nav-item ocultable" *ngIf="isLogin()">
+                    <li class="nav-item" *ngIf="isLogin()">
                         <a href="" class="nav-link" aria-current="page" (click)="logout($event)">LOGOUT</a>
                     </li>
                 </ul>
