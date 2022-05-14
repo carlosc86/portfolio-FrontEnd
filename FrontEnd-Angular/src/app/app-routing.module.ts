@@ -3,6 +3,7 @@ import { ExtraOptions, Router, RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { EditorSeccionComponent } from './components/editor-seccion/editor-seccion.component';
+import { PaginaCargaComponent } from './components/pagina-carga/pagina-carga.component';
 import { PaginaPortfolioComponent } from './components/pagina-portfolio/pagina-portfolio.component';
 import { SeccionAcercaDeComponent } from './components/seccion-acerca-de/seccion-acerca-de.component';
 import { SeccionContactoComponent } from './components/seccion-contacto/seccion-contacto.component';
@@ -19,7 +20,8 @@ const routerOptions: ExtraOptions = {
 
 const routes: Routes = [
   
-  {path:'',component:PaginaPortfolioComponent},  
+  {path:'',component:PaginaCargaComponent},
+  {path:'portfolio',component:PaginaPortfolioComponent},  
   {path:'**',component:Seccion404Component}
 ];
 
