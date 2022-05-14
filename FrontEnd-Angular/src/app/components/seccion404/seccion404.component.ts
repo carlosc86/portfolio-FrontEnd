@@ -11,14 +11,11 @@ import { SeccionData } from '../seccionData';
 })
 export class Seccion404Component extends SeccionComponent implements OnInit {
 
-  constructor(private pdto:PortfolioDTOService, private router:Router) { 
+  constructor(private router:Router) { 
     super();
   }
 
   override ngOnInit(): void {
-    this.pdto.obtener<SeccionData>('secciones').subscribe(data=>{
-      this.seccion=data.find(e=>e.nombre=='404')!;
-    });
   }
 
   volver(){
