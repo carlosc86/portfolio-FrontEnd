@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { RouterModule,Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -32,7 +32,6 @@ import { EditorMedioContactoComponent } from './components/editor-medio-contacto
 import { FormLoginComponent } from './components/form-login/form-login.component';
 import { InterceptorService } from './services/interceptor.service';
 import { ApiComunicationService } from './services/api-comunication.service';
-import { DataService } from './services/dataService';
 import { AuthenticationService } from './services/authentication.service';
 import { EstudioDataService } from './services/estudio-data.service';
 import { ExperienciaDataService } from './services/experiencia-data.service';

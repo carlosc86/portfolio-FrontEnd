@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SeccionData } from '../seccionData';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { SeccionDataService } from 'src/app/services/seccion-data.service';
 import { EditorData } from '../editorData';
 import { PortfolioDTOService } from 'src/app/services/portfolio-dto.service';

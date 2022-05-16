@@ -1,5 +1,4 @@
-import { LocationStrategy } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, Validators} from '@angular/forms';
 import { EstudioDataService } from 'src/app/services/estudio-data.service';
 import { PortfolioDTOService } from 'src/app/services/portfolio-dto.service';

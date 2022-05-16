@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HabilidadData } from '../components/habilidadData';
 import { ApiComunicationService } from './api-comunication.service';

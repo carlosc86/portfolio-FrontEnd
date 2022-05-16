@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PortfolioDTOService } from 'src/app/services/portfolio-dto.service';
+import { Router } from '@angular/router';
 import { SeccionComponent } from '../seccion/seccion.component';
-import { SeccionData } from '../seccionData';
 
 @Component({
   selector: 'app-seccion404',
