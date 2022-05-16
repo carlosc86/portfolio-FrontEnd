@@ -1,9 +1,8 @@
 import { Component,  OnInit,  } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { HabilidadDataService } from 'src/app/services/habilidad-data.service';
 import { PortfolioDTOService } from 'src/app/services/portfolio-dto.service';
 import { EditorData } from '../editorData';
-import { EstudioData } from '../estudioData';
 import { HabilidadData } from '../habilidadData';
 
 @Component({

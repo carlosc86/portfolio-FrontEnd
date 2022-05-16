@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { PortfolioDTOService } from 'src/app/services/portfolio-dto.service';
 import { ProyectoDataService } from 'src/app/services/proyecto-data.service';
 import { EditorData } from '../editorData';

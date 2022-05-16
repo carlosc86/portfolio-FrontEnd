@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { Observable, of } from 'rxjs';
-
 import { ApiComunicationService } from './api-comunication.service';
 import { SeccionData } from '../components/seccionData';
 import { DataService } from './dataService';
