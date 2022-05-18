@@ -15,6 +15,8 @@ export class EditorSeccionComponent extends EditorData<SeccionData> implements O
 
   constructor( private fb:FormBuilder,private seccionS:SeccionDataService,private pdto:PortfolioDTOService) { 
     super(seccionS);
+
+    //Creo el formulario
     this.forms=fb.group({
       titulo:['',],
       rutaImagen:['',],
@@ -29,6 +31,7 @@ export class EditorSeccionComponent extends EditorData<SeccionData> implements O
     }).closed;
   }
 
+  //Metodo para limpiar la varible que se usa para modificar secciones
   protected borrarElemento(): SeccionData {
     return {id:NaN,
       nombre:"",

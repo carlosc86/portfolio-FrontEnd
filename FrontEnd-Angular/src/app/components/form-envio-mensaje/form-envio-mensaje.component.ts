@@ -25,7 +25,9 @@ export class FormEnvioMensajeComponent implements OnInit {
   formulario:FormGroup;
 
   constructor(private fb:FormBuilder, protected mensajeService:MensajeDataService) { 
-    let soloLetras="[A-Za-z ]*"; //Expresion regular para solo letras
+  
+    let soloLetras="[A-Za-z ]*"; //Expresion regular para validar solo letras
+    //Creo el formulario
     this.formulario=fb.group({
       nombre:['', [Validators.required,Validators.minLength(2),Validators.pattern(soloLetras)]],
       apellido:['', [Validators.required,Validators.minLength(2),Validators.pattern(soloLetras)]],
@@ -39,12 +41,14 @@ export class FormEnvioMensajeComponent implements OnInit {
 
   }
 
+  //Metodos para mejorar la lectura de la plantilla
   get nombre(){ return this.formulario.get('nombre')!;}
   get apellido(){ return this.formulario.get('apellido')!;}
   get email(){ return this.formulario.get('email')!;}
   get asunto(){ return this.formulario.get('asunto')!;}
   get mensaje(){ return this.formulario.get('mensaje')!;}
 
+  //Metodo aceptar donde se colocan otros datos necesarios para el manejo de mensajes
   aceptar(){
     this.formulario.markAllAsTouched();
     if(this.formulario.valid){

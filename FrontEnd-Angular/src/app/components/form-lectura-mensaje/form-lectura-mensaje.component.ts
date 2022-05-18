@@ -30,7 +30,7 @@ export class FormLecturaMensajeComponent implements OnInit {
     moment.locale('es');
     this.mensajeService.traer().subscribe(dato=>{
       this.mensajes=dato;
-      this.mensajes.sort((e,f)=>moment(f.fecha).unix()-moment(e.fecha).unix());
+      this.mensajes.sort((e,f)=>moment(f.fecha).unix()-moment(e.fecha).unix());//formateo la fecha del mensaje
     });
   }
 
@@ -43,9 +43,9 @@ export class FormLecturaMensajeComponent implements OnInit {
     }else return "";
   }
 
+  //carga el mensaje en el tablero de mensajes
   leerMensaje(id:number){
     this.mensajeActivo=this.mensajes.find(e => e.id===id)!;
-    
     if(this.mensajeActivo!=null && !(this.mensajeActivo.leido)){
       this.mensajeActivo.leido=true;
       this.mensajeService.modificar(this.mensajeActivo).subscribe(dato=>{
@@ -53,6 +53,7 @@ export class FormLecturaMensajeComponent implements OnInit {
     }    
   }
 
+  //Carga el siguiente mensaje de la lista en el tablero de mensajes
   siguienteMensaje(){
     let indice=this.mensajes.indexOf(this.mensajeActivo);
     if(indice+1<this.mensajes.length){
@@ -61,6 +62,7 @@ export class FormLecturaMensajeComponent implements OnInit {
     }
   }
 
+  //Carga el mensaje anterior de la lista de mensajes en el tablero
   anteriorMensaje(){
     let indice=this.mensajes.indexOf(this.mensajeActivo);
     if(indice-1>=0){

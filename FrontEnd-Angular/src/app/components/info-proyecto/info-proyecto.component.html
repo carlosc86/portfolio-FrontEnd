@@ -1,4 +1,5 @@
 
+    <!-- Tarjeta con la informacion general del proyecto -->
     <div class="card  mx-auto mt-3 text-white shadow proyecto" data-bs-toggle="modal"
         [attr.data-bs-target]="'#infoProject'+proyecto.id">
         <div class="card-body">
@@ -16,7 +17,7 @@
         <app-elemento-boton [estilo]="'width:75px;'" [imagen]="'assets/DeleteButton.png'" [target]="'#modalEliminarProyecto'" (click)="activar()" class="editButton"></app-elemento-boton>
     </div>
 
-<!--Modal de proyecto 1-->
+<!--Modal con la informacion detallada del proyecto-->
 <div id="infoProject{{proyecto.id}}" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content modalProyecto">

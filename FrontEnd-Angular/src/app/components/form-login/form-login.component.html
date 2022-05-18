@@ -8,6 +8,8 @@
             <div class="modal-body">
                 <h3 class="modal-title col-11 mx-auto fw-bold text-decoration-underline mb-5">LOGIN</h3>
                 <form [formGroup]="form" class="col-10 mx-auto text-secondary mt-5" (ngSubmit)="login($event)">
+                    
+                    <!-- Input nombre de usuario -->
                     <div class="form-floating mb-5">
                         <input type="text" id="usuario" class="form-control" [(ngModel)]="credenciales.user"
                             formControlName="usuario"placeholder="Usuario" 
@@ -20,6 +22,8 @@
                             </span>
                         </div>
                     </div>
+
+                    <!-- Input password-->
                     <div class="form-floating mb-3">
                         <input type="password" id="contraseña" class="form-control" [(ngModel)]="credenciales.password"
                             formControlName="password" placeholder="contraseña"
@@ -35,8 +39,12 @@
                             </span>
                         </div>
                     </div>
+
+                    <!-- Informacion para el usuario, instrucciones o error del proceso de login -->
                     <p *ngIf="!hadError" class="mb-3">Ingrese su usuario y contraseña por favor.</p>
-                    <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>                    
+                    <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error> 
+                    
+                    <!-- Boton de login-->
                     <button type="submit" class="btn btn-primary shadow mb-3 mt-2" >Ingresar</button>
                 </form>
             </div>

@@ -20,6 +20,7 @@ export class EditorMedioContactoComponent extends EditorData<MedioContactoData> 
     //Expresion regular para manejar urls
     let RegExURL="^((((https?)://)|(mailto:))" +
                   "(%{2}|[-()_.!~*';/?:@&=+$, A-Za-z0-9])+)" + "([).!';/?:, ][[:blank:]])?$"
+    //Creo el formulario              
     this.forms=fb.group({
       url:['',[Validators.required,Validators.pattern(RegExURL)]],
       empresa:[''],
@@ -31,6 +32,7 @@ export class EditorMedioContactoComponent extends EditorData<MedioContactoData> 
     this.modal=document.getElementById('modalEditMedioContacto')!;
   }
 
+  //Limpieza de la variable "elemento"
   protected borrarElemento(): MedioContactoData {
     return {
       id:NaN,
@@ -40,16 +42,19 @@ export class EditorMedioContactoComponent extends EditorData<MedioContactoData> 
     };
   }
 
+  //Agrego medio a la lista de medios de contacto
   agregarMedio(){
     this.aceptar()
     this.actualizar.emit(this.lista);
   }
 
+  //Borro medio a la lista de medios de contacto
   borrarMedio(){
     this.eliminar();
     this.actualizar.emit(this.lista);
   }
 
+  //Metodo Get para simplificar la lectura de la plantilla
   get link(){return this.forms.get('url');}
 
   override aceptar(){

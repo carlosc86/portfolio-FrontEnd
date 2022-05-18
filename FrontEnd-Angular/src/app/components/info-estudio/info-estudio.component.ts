@@ -25,10 +25,12 @@ export class InfoEstudioComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Emite para decirle al editor que sera la tarjeta a editar
   activar(){
     this.emisor.emit(this.estudio);
   }
 
+  //Metodo para dar formato a la fecha mostrada, solo se muestra el año
   getYear(fecha:String){
     return fecha.split("-")[0];
   }

@@ -17,10 +17,12 @@ class ErrorAPI{
 @Injectable({
   providedIn: 'root'
 })
+//Clase para el manejo de la comunicacion con el backend
 export class ApiComunicationService {
 
   constructor(private http:HttpClient) { }
 
+  //Metodo manejador de errores
   private errorHandler(error:HttpErrorResponse){
     if(error.status===0){
       console.log("Error de conexion: No se ha podido establecer una comunicacion con el servidor.")
@@ -34,6 +36,7 @@ export class ApiComunicationService {
 
   }
 
+  //Metodos de comunicacion http con el backend
   getUrl(endpoint:string):Observable<any>{
     return this.http.get<any>(environment.urlServicio+endpoint)
                     .pipe(catchError(this.errorHandler));

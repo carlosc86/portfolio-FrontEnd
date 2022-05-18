@@ -24,10 +24,12 @@ export class InfoProyectoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Emite para decirle al editor que será el componente a editar o eliminar
   activar(){
     this.emisor.emit(this.proyecto);
   }
 
+  //Da formato a la fecha mostrada, solo se visualiza el año
   getYear(fecha:String){
     return fecha.split("-")[0];
   }

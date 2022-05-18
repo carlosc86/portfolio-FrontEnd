@@ -12,16 +12,22 @@
             <div class="modal-body">
                 <h3 class="modal-title fw-bold text-decoration-underline mb-3">Habilidad</h3>
                 <form action="" [formGroup]="forms" (ngSubmit)="aceptar()">
+                    
+                    <!-- Input nombre de la habilidad-->
                     <div class="form-floating mb-3">
                         <input type="text" [(ngModel)]="elemento.nombre" id="tituloHab" class="form-control" formControlName="nombre" 
                             placeholder="Titulo" [ngClass]="{'is-valid': nombre.valid && nombre.touched, 'is-invalid': nombre.invalid && nombre.touched}">
                         <label for="tituloHab" class="form-label">Nombre</label>
                     </div>
+                    
+                    <!-- Input descripcion, utilizado en el tooltips de la habilidad -->
                     <div class="form-floating mb-3">
                         <input type="text" [(ngModel)]="elemento.descripcion" id="descripcionHabilidad" class="form-control" formControlName="descripcion"
                             placeholder="Titulo" [ngClass]="{'is-valid': descripcion.touched}">
                         <label for="descripcionHabilidad" class="form-label">Descripcion</label>
                     </div>
+
+                    <!-- Input Porcentaje de habilidad -->
                     <div class="mb-3">
                         <!--Revisar el estilo de esta parte-->
                         <label for="nivelHab" class="form-label fw-bold">Porcentaje</label>
@@ -29,7 +35,11 @@
                             aria-valuemax="100" aria-valuemin="0" formControlName="porcentaje"
                             [ngClass]="{'is-valid': porcentaje.valid && porcentaje.touched, 'is-invalid': porcentaje.invalid && porcentaje.touched}">
                     </div>
-                    <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>    
+
+                    <!-- Informacion de cualquier error que pudiera surgir -->
+                    <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>   
+                    
+                    <!-- Botones del formulario -->
                     <button class="btn btn-secondary shadow" type="button" data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
                     <button class="btn btn-success shadow" type="submit" >Aceptar</button>
                 </form>
@@ -37,7 +47,11 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de confirmacion de la eliminacion de alguna habilidad -->
 <app-form-borrar-elemento [elemento]="'Habilidad'" (confirmar)="eliminar()"></app-form-borrar-elemento>
+
+<!-- Habilidades -->
 <div class="row">
     <app-info-habilidad class="col-6 col-md-3 mx-auto px-md-5 mt-2 mb-2" [habilidad]="skill" (emisor)="setActivo($event)" *ngFor="let skill of lista"></app-info-habilidad>
 </div>

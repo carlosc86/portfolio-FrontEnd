@@ -15,12 +15,14 @@ export class EditorHabilidadComponent extends EditorData<HabilidadData> implemen
   constructor(private fb:FormBuilder,
               private habilidadService:HabilidadDataService, private pdto:PortfolioDTOService) {
     super(habilidadService);
+    //Creacion del formulario
     this.forms=fb.group({
       nombre:['',[Validators.required]],
       descripcion:[''],
       porcentaje:[50,[Validators.required,Validators.min(0),Validators.max(100)]]
     });
    }
+
    override ngOnInit(): void {
     this.pdto.obtener<HabilidadData>("habilidades").subscribe(dato=>{// Cargo los datos desde el portfolioDTO
       this.lista=dato
@@ -28,6 +30,7 @@ export class EditorHabilidadComponent extends EditorData<HabilidadData> implemen
     this.modal=document.getElementById('editSkills')!;//Necesario para cerrar el modal desde typescript.
   }
 
+  //Limpieza de variable interna utilizada para crear o modificar elementos
    protected borrarElemento(): HabilidadData {
     return {
       id:NaN,
@@ -37,6 +40,7 @@ export class EditorHabilidadComponent extends EditorData<HabilidadData> implemen
     };
   }
 
+  //Metodos Get para simplificar la lectura de la plantilla
   get nombre(){return this.forms.get('nombre')!;}
   get porcentaje(){return this.forms.get('porcentaje')!;}
   get descripcion(){return this.forms.get('descripcion')!;}

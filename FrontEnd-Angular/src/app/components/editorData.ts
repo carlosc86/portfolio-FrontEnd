@@ -20,8 +20,7 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
     public hadError=false;
     public mensajeError="";
 
-    constructor(protected dataService:DataService<T>,
-                /*protected onLoadService:PortfolioDTOService*/){
+    constructor(protected dataService:DataService<T>){
         this.elemento=this.borrarElemento();
         this.copia=this.borrarElemento();
 
@@ -33,12 +32,15 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
         });
     }
 
+    //Cancela la modificacion o creacion de un elemento
     cancelar(){
         let indice=this.lista.indexOf(this.elemento);
         this.elemento=this.copiarElemento(this.copia);
         this.lista[indice]=this.elemento;
         this.resetForm();
     }
+
+    //Acepta la modificacion o creacion de un elemento
     aceptar(){
         this.forms.markAllAsTouched();//Marco como tocado todo el formulario para que aparezcan las validaciones
         if(this.forms.valid){ //Si el formulario es valido
@@ -65,6 +67,7 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
         }
     }
 
+    //Elimina un elemento
     eliminar(){
         if(!isNaN(this.elemento.id)){
             this.dataService.borrar(this.elemento).subscribe(dato=>{
@@ -75,31 +78,34 @@ export abstract class EditorData<T extends DataPortfolio> implements OnInit{
         }
     }
     
+    //Establece como activo un elemento y hace una copia para poder deshacer los cambios si se cancela
     setActivo(dato:T){
         this.elemento=dato;
         this.copia=this.copiarElemento(dato);
     }
     
+    //Reestablece el formulario
     resetForm(){
         this.elemento=this.borrarElemento();
         this.hadError=false;
         this.forms!.reset();   
     }
 
+    //Hace una copia del elemento
     protected  copiarElemento(dato:T):T{
         return JSON.parse(JSON.stringify(dato));
     }
 
+    //Metodo que se debe implementar para cada clase concreta
     protected abstract borrarElemento():T; //Devuelve un elemento limpio
 
+    //Metodo para tratar errores, se puede sobreescribir para personalizarlo en cada editor
     protected tratarError(error:any){
         if(error.status===401){
             this.mensajeError="Error de authenticacion, porfavor vuelva a loguear."
         }else{
             this.mensajeError="Ocurrió un error";
         }
-        
-
     }
     
 

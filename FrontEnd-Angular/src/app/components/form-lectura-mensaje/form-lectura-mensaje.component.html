@@ -1,11 +1,16 @@
 <!--Subseccion para leer mensajes, solo disponible cuando el usuario este logueado-->
-<div class="col-12 col-md-8 mx-auto ocultable">
+<div class="col-12 col-md-8 mx-auto">
+
+    
     <div class="col mb-3">
+        <!-- Cabecera de la lista -->
         <div class="row mx-auto align-items-center barra-titulo">
             <div class="col-2">Fecha</div>
             <div class="col-4 border-start border-end">Nombre</div>
             <div class="col-6">Asunto</div>
         </div>
+
+        <!-- Lista con los mensajes recibidos ordenados por fecha -->
         <div class="col-12 bg-white" style="height: 200px; overflow-y: scroll; border-radius: 0px 0px 15px 15px;">
             <div class="list-group">
                 <button type="button" class="list-group-item" *ngFor="let mensaje of mensajes" (click)="leerMensaje(mensaje.id)" 
@@ -19,7 +24,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Tablero donde se visualiza el mensaje seleccionado -->
     <form class="message-board">
+
+        <!-- Info del autor, la fecha y el asunto -->
         <div class="row mb-0 mb-md-3">
             <div class="input-group col-12 col-md mb-2 mb-md-0">
                 <label for="nombreMensaje" class="input-group-text label-info">Nombre:</label>
@@ -40,10 +49,14 @@
                 <input type="text" [value]="darFormatoFecha(mensajeActivo.fecha,true)" id="fechaMensaje" class="form-control" disabled readonly>
             </div>
         </div>
+
+        <!-- El cuerpo del mensaje -->
         <div class="col mb-3">
             <label for="cuerpoMensaje" class="input-group-text justify-content-center" style="border-radius: 15px 15px 0px 0px;">Mensaje</label>
             <textarea id="cuerpoMensaje" class="form-control text-left" disabled readonly style="resize: none; height: 150px;">{{mensajeActivo.cuerpo}}</textarea>
         </div>
+
+        <!-- Botones para desplazarse entre mensajes -->
         <div class="col-12">
             <button type="button" class="btn btn-primary shadow mb-3 " (click)="anteriorMensaje()">Previo</button>
             <button type="button" class="btn btn-primary shadow mb-3 " (click)="siguienteMensaje()">Siguiente</button>
