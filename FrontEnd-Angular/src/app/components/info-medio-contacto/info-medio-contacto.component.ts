@@ -22,6 +22,7 @@ export class InfoMedioContactoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Emite para decirle al editor que este medio de contacto se editara o eliminará
   buscarEditor(){
     this.emisor.emit(this.medioContacto);
   }

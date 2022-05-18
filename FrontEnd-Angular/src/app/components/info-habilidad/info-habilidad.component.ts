@@ -22,7 +22,8 @@ export class InfoHabilidadComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
+  //Emite para decirle al editor que será la habilidad a editar o eliminar
   activar(){
     this.emisor.emit(this.habilidad);
   }

@@ -10,7 +10,7 @@ import { PortfolioDTO } from '../portfolioDTO';
 })
 export class PaginaCargaComponent implements OnInit {
 
-  private primeraCarga=true;
+  private primeraCarga=true;//flag para no cargar cada vez que se vuelva a esta pagina
 
   constructor(private router:Router ,private portfolioService:PortfolioDTOService) { }
 

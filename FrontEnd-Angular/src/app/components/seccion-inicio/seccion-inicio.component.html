@@ -5,8 +5,7 @@
         <h1 class="col-6 fw-bold position-relative text-uppercase start-50 translate-middle-x"><strong>{{seccion.titulo}}</strong></h1>
         <app-elemento-separador class="img-fluid" [color]="seccion.colorTexto"></app-elemento-separador> 
         <p>{{seccion.texto}}</p>
-        <!--Editor de seccion-->
-        <!--Boton para editar la cabecera de la seccion-->
+        <!--Boton para editar la seccion-->
         <div class="col-12">
             <app-elemento-boton [imagen]="'assets/EditButton.png'" [target]="'#editSection'" (click)="llamarEditor()" class="editButton"></app-elemento-boton>
         </div>

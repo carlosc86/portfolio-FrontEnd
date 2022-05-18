@@ -41,7 +41,7 @@ import { PortfolioDTOService } from './services/portfolio-dto.service';
 import { ProyectoDataService } from './services/proyecto-data.service';
 import { ElementoBotonComponent } from './components/elemento-boton/elemento-boton.component';
 import { InfoUsuarioComponent } from './components/info-usuario/info-usuario.component';
-import { Seccion404Component } from './components/seccion404/seccion404.component';
+import { Pagina404Component } from './components/pagina404/pagina404.component';
 import { PaginaPortfolioComponent } from './components/pagina-portfolio/pagina-portfolio.component';
 import { InfoErrorComponent } from './components/info-error/info-error.component';
 import { ElementoSeparadorComponent } from './components/elemento-separador/elemento-separador.component';
@@ -75,7 +75,7 @@ import { PaginaCargaComponent } from './components/pagina-carga/pagina-carga.com
     FormLoginComponent,
     ElementoBotonComponent,
     InfoUsuarioComponent,
-    Seccion404Component,
+    Pagina404Component,
     PaginaPortfolioComponent,
     InfoErrorComponent,
     ElementoSeparadorComponent,

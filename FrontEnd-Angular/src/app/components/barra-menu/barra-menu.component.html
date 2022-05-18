@@ -2,11 +2,15 @@
  <header class="navbar navbar-expand-md fixed-top navbar-dark text-white" id="cabecera">
     <nav class="container-fluid">
         <img class="navbar-brand img-fluid" src="assets/APLogo.png">
+        
+        <!--informacion del usuario cuando esta logueado-->
         <app-info-usuario></app-info-usuario>
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse flex-column" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse flex-column" id="navbarSupportedContent"> 
+            <!--Lista de medios de contacto-->
             <div class="col-12">
                 <ul class="nav navbar-nav flex-row justify-content-md-end">
                     <li class="nav-item col col-md-auto ms-0 me-0 mt-0" *ngIf="isLogin()">
@@ -17,6 +21,8 @@
                     </li>
                 </ul>
             </div>
+
+            <!--Links para la navegacion dentro del sitio-->
             <div class="col-12">
                 <ul class="nav navbar-nav justify-content-end">
                     <li class="nav-item">
@@ -45,4 +51,6 @@
 </header>
 <!-- Modal para editar las redes sociales-->
 <app-editor-medio-contacto [lista]="mediosContacto" (actualizar)="cargarLista($event)"></app-editor-medio-contacto>
+
+<!-- Modal para loguearse-->
 <app-form-login></app-form-login>

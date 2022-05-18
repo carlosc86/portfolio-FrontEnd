@@ -8,6 +8,7 @@ import { SeccionData } from '../seccionData';
   templateUrl: './seccion.component.html',
   styleUrls: ['./seccion.component.css']
 })
+//Seccion generica usada como clase padre para las demas secciones
 export class SeccionComponent implements OnInit {
 
   @Input() seccion:SeccionData={
@@ -28,7 +29,8 @@ export class SeccionComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
+  //Emite para decirle al editor que será la seccion a modificar
   llamarEditor(){
     this.activar.emit(this.seccion);
   }

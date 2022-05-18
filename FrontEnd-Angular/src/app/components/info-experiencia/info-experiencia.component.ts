@@ -27,10 +27,12 @@ export class InfoExperienciaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Emite para decirle al editor que sera la tarjeta a editar
   activar(){
     this.emisor.emit(this.experiencia);
   }
 
+  //Metodo para dar formato a la fecha mostrada en la tarjeta, solo se muestra el año
   getYear(fecha:String){
     return fecha.split("-")[0];
   }

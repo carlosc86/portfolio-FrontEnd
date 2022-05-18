@@ -24,7 +24,7 @@ export class PortfolioDTOService extends DataService<PortfolioDTO> {
 
   private dtoCache:PortfolioDTO; //Especie de cache improvisada, solo para cargar los datos por primera vez
 
-  private enEspera:boolean=true;
+  private enEspera:boolean=true; //Flag para establecer que el servicio esta a la espera de datos del backend
 
   constructor(protected override api:ApiComunicationService) {
     super(api);
@@ -51,6 +51,7 @@ export class PortfolioDTOService extends DataService<PortfolioDTO> {
     return super.traer();
   }
 
+  //Trae algun dato de los cargados en la variables
   obtener<T>(llave:claves):Observable<T[]>{ //Devuelve la promesa de un elemento dentro del DTO
     let elemento=this.buscarObservador<T>(llave);
     if(!this.enEspera&&this.dtoCache.secciones.length>0){
@@ -62,15 +63,17 @@ export class PortfolioDTOService extends DataService<PortfolioDTO> {
     return elemento.valor.asObservable();
   }
 
+  //Busco dentro de mi lista de observadores el adecuado para el tipo de datos pedido
   private buscarObservador<T>(llave:claves):obsevador{
     let elemento=this.observadores$.find(e=>e.nombre===llave);
-    if(elemento===undefined){
+    if(elemento===undefined){ //si no lo encuentro lo creo y lo agrego a la lista
       elemento={nombre:llave,valor:new Subject<T[]>()};
       this.observadores$.push(elemento);
     }
     return elemento;
   }
 
+  //Metodo para actualizar los observadores con los datos de dtoCache
   private cargarObservadores(){
     for(let llave in this.dtoCache){
       if(llave!=='id'){
@@ -82,11 +85,5 @@ export class PortfolioDTOService extends DataService<PortfolioDTO> {
     this.enEspera=false;
   }
 
-
-  /*
-  static getInstancia(): PortfolioDTOService{//Parte del patron Singleton
-    return PortfolioDTOService.instancia;
-  }
-*/
 }
 

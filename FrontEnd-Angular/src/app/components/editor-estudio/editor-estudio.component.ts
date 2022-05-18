@@ -11,15 +11,11 @@ import { EstudioData } from '../estudioData';
   styleUrls: ['./editor-estudio.component.css']
 })
 export class EditorEstudioComponent extends EditorData<EstudioData> implements OnInit{
-  
-  
-
-  
-  
 
   constructor(private fb:FormBuilder, private estudioService:EstudioDataService, private pdto:PortfolioDTOService) {
     super(estudioService);  
     this.modal=document.getElementById('editStudies')!;         
+    //construccion del formulario
     this.forms=fb.group({
       titulo:['',[Validators.required]],
       nombreInstitucion:['',[Validators.required]],
@@ -29,18 +25,21 @@ export class EditorEstudioComponent extends EditorData<EstudioData> implements O
       fechaFin:['',[Validators.required]]
     });
    }
+
   override ngOnInit(): void {
     this.pdto.obtener<EstudioData>("estudios").subscribe(dato=>{//Carga de datos desde el portfolioDTO
       this.lista=dato
     });
-    this.modal=document.getElementById('editStudies')!;//Necesario para cerral el modal con typescript
+    this.modal=document.getElementById('editStudies')!;//Necesario para cerrar el modal con typescript
   }
 
+  //Metodos Get para facilitar la comprension de la plantilla
   get titulo(){return this.forms.get('titulo')!;}
   get nombreInstitucion(){return this.forms.get('nombreInstitucion')!;}
   get fechaInicio(){return this.forms.get('fechaInicio')!;}
   get fechaFin(){return this.forms.get('fechaFin')!;}
 
+  //metodo para limpiar los campos de la variable utilizada, para su reutilizacion posterior
   protected borrarElemento(){
     return {
       id:NaN,

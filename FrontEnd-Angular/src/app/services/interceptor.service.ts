@@ -6,6 +6,7 @@ import { AuthenticationService } from './authentication.service';
 @Injectable({
   providedIn: 'root'
 })
+//Interceptor que coloca el token jwt en la cabecera para autenticar las operaciones en el backend
 export class InterceptorService implements HttpInterceptor {
 
   constructor(private authService:AuthenticationService) { }

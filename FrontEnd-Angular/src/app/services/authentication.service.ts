@@ -11,8 +11,11 @@ import { ApiComunicationService } from './api-comunication.service';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  //Observables de cambios en las variables de sesion una para el jwt, otra para el usuario
   currentTokenSubject:BehaviorSubject<any>;
   currentUserSubject:BehaviorSubject<UsuarioData>;
+  
+  //Datos obtenidos de las variables de entorno
   private endpointRoot=environment.endpoint_autorizacion;
   private tokenKey=environment.sessionTokenName;
   private userKey=environment.sessionUserName;
@@ -23,11 +26,11 @@ export class AuthenticationService {
   }
 
   login(credenciales:CredencialData):Observable<any>{
-    //CAMBIAR ESTO POR UN POST
     let header=new HttpHeaders().set("Authorization","basic "+btoa(credenciales.user+":"+credenciales.password));
     return this.api.postUrl(this.endpointRoot,"",header).pipe(map(data=>{
       sessionStorage.setItem(this.tokenKey,JSON.stringify(data.token));//guardo el token en el sessionStorage.
-      sessionStorage.setItem(this.userKey,JSON.stringify(data.usuario));
+      sessionStorage.setItem(this.userKey,JSON.stringify(data.usuario));//guardo datos del usuario
+      //Actualizo los observables
       this.currentTokenSubject.next(JSON.parse(sessionStorage.getItem(this.tokenKey)!));
       this.currentUserSubject.next(JSON.parse(sessionStorage.getItem(this.userKey)!));
       return data;
@@ -35,20 +38,23 @@ export class AuthenticationService {
   }
 
   logout():Observable<any>{
+    //Borro los datos de sesion en el storage
     sessionStorage.removeItem(this.tokenKey);
     sessionStorage.removeItem(this.userKey);
-    
-  
+    //Llamo al backend para informar el logout
     return this.api.postUrl(this.endpointRoot+"/logout",this.currentUserSubject.value).pipe(map(data=>{
+      //Actualizo los observables
       this.currentTokenSubject.next(JSON.parse('{}'));//no hay nada lo acabo de borrar
       this.currentUserSubject.next(JSON.parse('{}'));//no hay nada lo acabo de borrar
       return data;
     }));
   } 
 
+  //Metodo utilizado para saber si hay un usuario logueado
   isLogin():boolean{
     return sessionStorage.getItem(this.tokenKey)? true:false; //Por ahora si no hay token no estas logueado, sin tener en cuenta la expiracion.
   }
+
 
   get tokenUsuario(){
     return this.currentTokenSubject.value;
@@ -58,7 +64,9 @@ export class AuthenticationService {
     return this.currentUserSubject.asObservable();
   }
 
-  forzarLogout(){ //Metodo solo utilizado cuando hay error de authenticacion con el backend, se debe reloguear
+  //Metodo solo utilizado cuando hay error de authenticacion con el backend, se debe reloguear
+  forzarLogout(){ 
+    //Desloguea al usuario sin necesidad de informar al backend, pues este ya ha dado el error
     sessionStorage.removeItem(this.tokenKey);
     sessionStorage.removeItem(this.userKey);
     this.currentTokenSubject.next(JSON.parse('{}'));//no hay nada lo acabo de borrar

@@ -1,4 +1,4 @@
-<!--Tarjeta de experiencia Laboral 1-->
+<!--Tarjeta de experiencia Laboral-->
 
     <div class="card mx-auto mt-3 shadow experiencia" data-bs-toggle="modal" [attr.data-bs-target]="'#infoWork'+experiencia.id">
         <div class="card-body">
@@ -16,7 +16,7 @@
         <app-elemento-boton [estilo]="'width:75px;'" [imagen]="'assets/DeleteButton.png'" [target]="'#modalEliminarExperiencia'" (click)="activar()" class="editButton"></app-elemento-boton>
     </div>
 
-<!--Modal para la tarjeta de experiencia 1-->
+<!--Modal para expandir la informacion de la tarjeta de experiencia -->
 <div class="modal fade" id="infoWork{{experiencia.id}}" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content modalTrabajo">

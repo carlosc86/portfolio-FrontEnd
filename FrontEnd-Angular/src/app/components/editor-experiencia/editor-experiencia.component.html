@@ -11,49 +11,70 @@
             <div class="modal-body">
                 <h3 class="modal-title fw-bold text-decoration-underline mb-3">Experiencia Laboral</h3>
                 <form action="" [formGroup]="forms" (ngSubmit)="aceptar()">
+                    
+                    <!-- Input nombre de la empresa-->
                     <div class="form-floating mb-3">
                         <input type="text" [(ngModel)]="elemento.nombreEmpresa" id="nombreEmpresa" class="form-control" formControlName="nombreEmpresa"
                             placeholder="Nombre de la Empresa" [ngClass]="{'is-valid': nombreEmpresa.valid && nombreEmpresa.touched, 'is-invalid': nombreEmpresa.invalid && nombreEmpresa.touched}">
                         <label for="nombreEmpresa" class="form-label">Nombre de la Empresa</label>
                     </div>
+
+                    <!-- Input direccion de la empresa-->
                     <div class="form-floating mb-3">
                         <input type="text" [(ngModel)]="elemento.direccionEmpresa" id="direccionEmpresa" class="form-control" formControlName="direccionEmpresa"
                             placeholder="Direccion de la Empresa" [ngClass]="{'is-valid': forms.get('direccionEmpresa')!.touched}">
                         <label for="direccionEmpresa" class="form-label">Direccion de la Empresa</label>
                     </div>
+
+                    <!-- Input url del logo de la empresa-->
                     <div class="input-group mb-3">
                         <input type="text" [(ngModel)]="elemento.rutaLogoEmpresa" id="logoEmpresa" class="form-control" formControlName="urlLogoEmpresa"
                             [ngClass]="{'is-valid': forms.get('urlLogoEmpresa')!.touched}">
                         <label for="logoEmpresa" class="input-group-text">Logo</label>
                     </div>
+
+                    <!-- Input puesto de trabajo-->
                     <div class="form-floating mb-3">
                         <input type="text" [(ngModel)]="elemento.puesto" id="puestoLaboral" class="form-control" formControlName="puesto"
                             placeholder="Puesto en el que trabajaba" [ngClass]="{'is-valid': puesto.valid && puesto.touched, 'is-invalid': puesto.invalid && puesto.touched}">
                         <label for="puestoLaboral" class="form-label">Puesto Laboral</label>
                     </div>
+
+                    <!-- Input tipo de trabajo que realizaba-->
                     <div class="form-floating mb-3">
                         <input type="text" [(ngModel)]="elemento.tipoTrabajo" id="tipoTrabajo" class="form-control" formControlName="tipoTrabajo"
                             placeholder="Tipo de trabajo que realizaba" [ngClass]="{'is-valid': tipoTrabajo.valid && tipoTrabajo.touched, 'is-invalid': tipoTrabajo.invalid && tipoTrabajo.touched}">
                         <label for="tipoTrabajo" class="form-label">Tipo de Trabajo</label>
                     </div>
+                    
                     <div class="row mb-3">
+
+                        <!-- Input Fecha de inicio-->
                         <div class="input-group col">
                             <input type="date" [(ngModel)]="elemento.fechaInicio" id="fechaExpInit" class="form-control" formControlName="fechaInicio"
                                 [ngClass]="{'is-valid': fechaInicio.valid && fechaInicio.touched, 'is-invalid': fechaInicio.invalid && fechaInicio.touched}" (change)="validarFechas()">
                             <label for="fechaExpInit" class="input-group-text">Fecha inicio</label>
                         </div>
+
+                        <!-- Input fecha de finalizacion-->
                         <div class="input-group col">
                             <input type="Date" [(ngModel)]="elemento.fechaFin" id="fechaExpFin" class="form-control" formControlName="fechaFin"
                             [ngClass]="{'is-valid': fechaFin.valid && fechaFin.touched, 'is-invalid': fechaFin.invalid && fechaFin.touched}" (change)="validarFechas()">
                             <label for="fechaExpFin" class="input-group-text">Fecha fin</label>
                         </div>
                     </div>
+
+                    <!-- TextArea de descripcion de la actividad que realizaba en el puesto -->
                     <div class="form-floating mb-3">
                         <textarea [(ngModel)]="elemento.descripcion" id="descripcionPuesto" class="form-control" style="resize: none;height: 150px;" formControlName="descripcion" 
                             placeholder="Que hacia en ese puesto" [ngClass]="{'is-valid': forms.get('descripcion')!.touched}"></textarea>
                         <label for="descripcionPuesto" class="form-label">Lo que hacia en ese puesto era...</label>
                     </div>
+
+                    <!-- Informacion de algun error que puediera surgir -->
                     <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>    
+                    
+                    <!-- Botones del formulario -->
                     <button class="btn btn-secondary shadow" type="button" data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
                     <button class="btn btn-success shadow" type="submit" >Aceptar</button>
                 </form>
@@ -62,7 +83,10 @@
     </div>
 </div>
 
+<!-- Modal de confirmacion de la eliminacion de una experiencia laboral -->
 <app-form-borrar-elemento [elemento]="'Experiencia'" (confirmar)="eliminar()"></app-form-borrar-elemento>
+
+<!-- Experiencias laborales -->
 <div class="row">
     <app-info-experiencia [experiencia]="experience" (emisor)="setActivo($event)" *ngFor="let experience of lista" class="col-12 col-md-4"></app-info-experiencia>
 </div>

@@ -7,9 +7,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./elemento-boton.component.css']
 })
 export class ElementoBotonComponent implements OnInit {
-  @Input() imagen="";
-  @Input() target="";
-  @Input() estilo?="";
+
+  @Input() imagen="";//icono del boton
+  @Input() target="";//a que elemento hace referencia (modal)
+  @Input() estilo?=""; //Estilo personalizado si hace falta
 
   constructor(private authService:AuthenticationService) { }
 

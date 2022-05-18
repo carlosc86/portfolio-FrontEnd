@@ -14,6 +14,7 @@ export class EditorExperienciaComponent extends EditorData<ExperienciaData> impl
   
   constructor(private fb:FormBuilder, private experienciaService:ExperienciaDataService, private pdto:PortfolioDTOService) { 
     super(experienciaService);
+    //creacion del formulario a utilizar
     this.forms=fb.group({
       puesto:['',[Validators.required]],
       tipoTrabajo:['',[Validators.required]],
@@ -25,6 +26,7 @@ export class EditorExperienciaComponent extends EditorData<ExperienciaData> impl
       fechaFin:['',[Validators.required]]
     });
   }
+
   override ngOnInit(): void {
     this.pdto.obtener<ExperienciaData>("experiencias").subscribe(dato=>{//Carga de datos desde el portfolioDTO
       this.lista=dato
@@ -32,6 +34,7 @@ export class EditorExperienciaComponent extends EditorData<ExperienciaData> impl
     this.modal=document.getElementById('editExperiences')!; //Necesario para cerral el modal con typescript
   }
 
+  //Limpia la variable utilizada para crear o modificar datos
   protected borrarElemento(): ExperienciaData {
     return {
       id:NaN,
@@ -46,6 +49,7 @@ export class EditorExperienciaComponent extends EditorData<ExperienciaData> impl
     };
   }
 
+  //Metodos Get para simplificar la lectura de la plantilla
   get puesto(){return this.forms.get('puesto')!;}
   get tipoTrabajo(){return this.forms.get('tipoTrabajo')!;}
   get nombreEmpresa(){return this.forms.get('nombreEmpresa')!;}

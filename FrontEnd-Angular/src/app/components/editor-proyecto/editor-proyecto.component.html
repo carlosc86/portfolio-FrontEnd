@@ -14,12 +14,16 @@
                 <h3 class="modal-title fw-bold text-decoration-underline mb-3">Proyecto</h3>
                 <form action="" [formGroup]="forms" (ngSubmit)="confirmarCambios()">
                     <div class="row mb-3">
+
+                        <!-- Input nombre del proyecto-->
                         <div class="form-floating col">
                             <input type="text" [(ngModel)]="elemento.nombre" id="nombreProyecto" class="form-control"
                                 formControlName="nombre" placeholder="Proyecto en el que participe."
                                 [ngClass]="{'is-valid': nombre.valid && nombre.touched, 'is-invalid': nombre.invalid && nombre.touched}">
                             <label for="nombreProyecto" class="form-label">Nombre del proyecto</label>
                         </div>
+
+                        <!-- Input fecha en la que participo-->
                         <div class="input-group col">
                             <input type="date" [(ngModel)]="elemento.fecha" class="form-control" id="fechaProy" formControlName="fecha"
                                 [ngClass]="{'is-valid': fecha.valid && fecha.touched, 'is-invalid': fecha.invalid && fecha.touched}" 
@@ -27,6 +31,8 @@
                             <label for="fechaProy" class="input-group-text">Fecha</label>
                         </div>
                     </div>
+
+                    <!-- TextArea descripcion del proyecto -->
                     <div class="form-floating mb-3">
                         <textarea [(ngModel)]="elemento.descripcion" id="descripcionProyecto" class="form-control"
                             style="resize: none; height: 150px;" placeholder="Describe el proyecto" formControlName="descripcion"
@@ -34,24 +40,33 @@
                         <label for="descripcionProyecto" class="form-label">Descripcion del
                             proyecto</label>
                     </div>
+
+                    <!-- Input url del proyecto -->
                     <div class="form-floating mb-3">
                         <input type="text" [(ngModel)]="elemento.link" id="linkProyecto" class="form-control"
                             formControlName="link" placeholder="Direccion web del proyecto."
                             [ngClass]="{'is-valid': link.valid && link.touched, 'is-invalid': link.invalid && link.touched}">
                         <label for="linkProyecto" class="form-label">Url del proyecto</label>
                     </div>
+
+                    <!-- Input para ingresar una url de una imagen del proyecto-->
                     <div class="input-group">
                         <input type="text" name="" id="imagenProyecto" class="form-control" formControlName="urlImagen"
                             [ngClass]="{'is-valid': urlImagen.valid && urlImagen.touched, 'is-invalid': urlImagen.invalid && urlImagen.touched}">
                         <label for="imagenProyecto" class="input-group-text">Imagen</label>
                         <button type="button" class="btn btn-primary shadow" (click)="agregarALista()">Agregar</button>
                     </div>
+
+                    <!-- Lista de rutas de imagenes del proyecto-->
                     <div class="input-group" *ngFor="let ruta of listaRutas">
                         <input type="text" class="form-control" disabled [value]="ruta">
                         <button type="button" class="btn btn-secondary shadow" (click)="quitarDeLista(ruta)">Quitar</button>
                     </div>
                     <div class="mt-3">
+                        <!-- Informacion de cualquier error que pudiera ocurrir -->
                         <app-info-error *ngIf="hadError" [mensaje]="mensajeError"></app-info-error>    
+
+                        <!-- Botones -->
                         <button class="btn btn-secondary shadow" type="button"
                             data-bs-dismiss="modal" (click)="cancelar()">Cancelar</button>
                         <button class="btn btn-success shadow" type="submit">Aceptar</button>
@@ -62,7 +77,10 @@
     </div>
 </div>
 
+<!-- Modal para confirmar si desea eliminar un proyecto -->
 <app-form-borrar-elemento [elemento]="'Proyecto'" (confirmar)="eliminar()"></app-form-borrar-elemento>
+
+<!-- Proyectos -->
 <div class="row">
     <app-info-proyecto [proyecto]="project" (emisor)="setActivo($event)" *ngFor="let project of lista" class="col-12 col-md-4"></app-info-proyecto>
 </div>

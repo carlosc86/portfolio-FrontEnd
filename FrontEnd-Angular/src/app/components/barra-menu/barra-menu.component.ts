@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { MedioContactoDataService } from 'src/app/services/medio-contacto-data.service';
 import { PortfolioDTOService } from 'src/app/services/portfolio-dto.service';
 import { MedioContactoData } from '../medioContactoData';
 
@@ -10,11 +9,10 @@ import { MedioContactoData } from '../medioContactoData';
   styleUrls: ['./barra-menu.component.css']
 })
 export class BarraMenuComponent implements OnInit {
-  mediosContacto:MedioContactoData[]=[];
-  usuario:string="Carlos";
 
-  constructor(private mediosContactoService:MedioContactoDataService, 
-              private pdto:PortfolioDTOService,
+  mediosContacto:MedioContactoData[]=[];
+
+  constructor(private pdto:PortfolioDTOService,
               private authService:AuthenticationService) { }
 
   ngOnInit(): void {
@@ -28,7 +26,6 @@ export class BarraMenuComponent implements OnInit {
   }
 
   logout(evento:Event){
-    //this.usuario="";
     evento.preventDefault();
     this.authService.logout().subscribe(data=>{
       console.log(`Se deslogueo exitosamente ${data}`);
