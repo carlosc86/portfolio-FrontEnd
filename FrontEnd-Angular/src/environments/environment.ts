@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlServicio:"http://localhost:8080",
+  urlServicio:"http://192.168.1.175:8080",
   endpoint_seccion:"/secciones",
   endpoint_estudios:"/estudios",
   endpoint_habilidades:"/habilidades",
