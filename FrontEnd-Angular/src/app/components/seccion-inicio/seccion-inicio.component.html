@@ -1,7 +1,7 @@
 <!--Seccion Home-->
-<section class="row pt-4 pb-5" id="home" [style]="'background-color: '+seccion.colorFondo+'; color: '+seccion.colorTexto+';'">
-    <div class="col-12 pt-5 pb-5 mt-md-5">
-        <img src="{{seccion.rutaImagen}}" class="img-fluid" *ngIf="seccion.rutaImagen.length>0">
+<section class="row mt-5 mt-md-2 pt-4 pb-5" id="home" [style]="'background-color: '+seccion.colorFondo+'; color: '+seccion.colorTexto+';'">
+    <div class="col-12 mt-5 mt-md-0 pt-5 pb-5 mt-md-5">
+        <img src="{{seccion.rutaImagen}}" class="img-fluid col-6 col-md-2 rounded-circle" *ngIf="seccion.rutaImagen.length>0">
         <h1 class="col-6 fw-bold position-relative text-uppercase start-50 translate-middle-x"><strong>{{seccion.titulo}}</strong></h1>
         <app-elemento-separador class="img-fluid" [color]="seccion.colorTexto"></app-elemento-separador> 
         <p>{{seccion.texto}}</p>

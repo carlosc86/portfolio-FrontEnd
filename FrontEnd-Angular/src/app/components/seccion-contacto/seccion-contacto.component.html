@@ -4,7 +4,7 @@
         <!--Separador de estrella-->
         <app-elemento-separador class="img-fluid" [color]="seccion.colorTexto"></app-elemento-separador> 
         <p class="col-12">{{seccion.texto}}</p>
-        <img src="{{seccion.rutaImagen}}" class="img-fluid col-6 col-sm-4 col-md-2" *ngIf="seccion.rutaImagen.length>0">
+        <img src="{{seccion.rutaImagen}}" class="img-fluid col-4 col-sm-2 col-md-1 mb-3" *ngIf="seccion.rutaImagen.length>0">
         <!--Boton para editar la cabecera de la seccion-->
         <div class="col-12">
             <app-elemento-boton [imagen]="'assets/EditButton.png'" [target]="'#editSection'" (click)="llamarEditor()" class="editButton"></app-elemento-boton>
