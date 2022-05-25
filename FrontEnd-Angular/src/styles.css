@@ -1,3 +1,7 @@
+p {
+    white-space:pre-wrap;
+}
+
 .modal-header{
     border: none;
 }
