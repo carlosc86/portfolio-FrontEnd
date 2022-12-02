@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  urlServicio:"https://portfolio-carricondo.herokuapp.com",
+  urlServicio:"https://portfolio-carricondo.up.railway.app",
   endpoint_seccion:"/secciones",
   endpoint_estudios:"/estudios",
   endpoint_habilidades:"/habilidades",
